@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Konnec\LaravelHelpers\Traits;
+namespace Konnec\Helpers\Traits;
 
 trait Enumerable
 {

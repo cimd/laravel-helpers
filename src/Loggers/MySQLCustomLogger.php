@@ -1,6 +1,6 @@
 <?php
 
-namespace Konnec\LaravelHelpers\Loggers;
+namespace Konnec\Helpers\Loggers;
 
 use Monolog\Logger;
 

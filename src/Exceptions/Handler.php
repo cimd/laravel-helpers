@@ -1,6 +1,6 @@
 <?php
 
-namespace Konnec\LaravelHelpers\Exceptions;
+namespace Konnec\Helpers\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpFoundation\Response;

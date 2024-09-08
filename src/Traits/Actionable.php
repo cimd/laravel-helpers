@@ -1,6 +1,6 @@
 <?php
 
-namespace Konnec\LaravelHelpers\Traits;
+namespace Konnec\Helpers\Traits;
 
 trait Actionable
 {

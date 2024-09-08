@@ -1,16 +1,15 @@
 <?php
 
-namespace Konnec\LaravelHelpers\Loggers;
+namespace Konnec\Helpers\Loggers;
 
 use Illuminate\Support\Facades\DB;
+use Konnec\Helpers\Actions\TableName;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Level;
 use Monolog\LogRecord;
 
 class MySQLLoggingHandler extends AbstractProcessingHandler
 {
-    protected string $table = 'app_error_logs';
-
     /**
      * Reference:
      * https://github.com/markhilton/monolog-mysql/blob/master/src/Logger/Monolog/Handler/MysqlHandler.php
@@ -34,6 +33,6 @@ class MySQLLoggingHandler extends AbstractProcessingHandler
             'remote_addr' => isset($_SERVER['REMOTE_ADDR']) ? ip2long($_SERVER['REMOTE_ADDR']) : null,
             'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
         ];
-        DB::connection()->table($this->table)->insert($data);
+        DB::connection()->table(TableName::handle())->insert($data);
     }
 }

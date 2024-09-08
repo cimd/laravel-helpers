@@ -1,6 +1,6 @@
 <?php
 
-namespace Konnec\LaravelHelpers\Exceptions;
+namespace Konnec\Helpers\Exceptions;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
