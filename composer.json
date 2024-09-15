@@ -41,6 +41,13 @@
         "rector/rector": "^0.18",
         "spatie/laravel-ignition": "^2.3"
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Konnec\\Helpers\\Providers\\ServiceProvider"
+            ]
+        }
+    },
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true
