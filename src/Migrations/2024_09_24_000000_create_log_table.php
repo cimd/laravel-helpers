@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('message', 255);
             $table->text('context');
-            $table->string('level', 30);
+            $table->string('level', 30)->index();
             $table->string('level_name', 255);
+            $table->string('channel', 60)->index();
             $table->timestamp('record_datetime')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->text('extra');
             $table->text('formatted');
