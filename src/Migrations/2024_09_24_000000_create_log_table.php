@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create(TableName::handle(), function (Blueprint $table) {
             $table->id();
-            $table->string('message', 255);
+            $table->text('message');
             $table->text('context');
             $table->string('level', 30)->index();
             $table->string('level_name', 255);
@@ -23,8 +23,8 @@ return new class extends Migration
             $table->timestamp('record_datetime')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->text('extra');
             $table->text('formatted');
-            $table->ipAddress('remote_addr');
-            $table->string('user_agent', 255);
+            $table->ipAddress('remote_addr')->nullable();
+            $table->string('user_agent', 255)->nullable();
             $table->timestamps();
         });
     }
