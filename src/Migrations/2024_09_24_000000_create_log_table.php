@@ -25,7 +25,8 @@ return new class extends Migration
             $table->text('formatted');
             $table->ipAddress('remote_addr')->nullable();
             $table->string('user_agent', 255)->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
