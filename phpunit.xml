@@ -7,21 +7,21 @@
     beStrictAboutOutputDuringTests="true"
 >
     <coverage>
-        <include>
-            <directory suffix=".php">./src</directory>
-        </include>
         <report>
             <html outputDirectory="coverage" lowUpperBound="50" highLowerBound="75"/>
         </report>
     </coverage>
     <testsuites>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
     <source>
         <include>
-            <directory suffix=".php">./app</directory>
+            <directory suffix=".php">./src</directory>
         </include>
     </source>
     <php>
