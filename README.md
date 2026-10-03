@@ -8,4 +8,3 @@
 
 ## Logs
 1. Logging to DB
-2. 

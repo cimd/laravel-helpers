@@ -19,17 +19,12 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    public function report(Throwable $exception): void
-    {
-        parent::report($exception);
-    }
-
-    public function render($request, Throwable $exception): Response
+    public function render($request, Throwable $e): Response
     {
         if ($request->expectsJson()) {
-            return $this->apiException($request, $exception);
+            return $this->apiException($request, $e);
         }
 
-        return parent::render($request, $exception);
+        return parent::render($request, $e);
     }
 }

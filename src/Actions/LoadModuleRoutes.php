@@ -2,8 +2,8 @@
 
 namespace Konnec\Helpers\Actions;
 
-use Konnec\Helpers\Traits\Actionable;
 use Illuminate\Support\Facades\Route;
+use Konnec\Helpers\Traits\Actionable;
 
 /**
  * Generate the table name for the log entries.
@@ -12,10 +12,10 @@ class LoadModuleRoutes
 {
     use Actionable;
 
-    public function run(): void
+    public function run(): null
     {
         $routeFiles = collect(
-            glob(base_path('modules/*/Routes/*.api.php'))
+            glob(base_path('modules/*/Routes/*.api.php')) ?: []
         );
 
         $routeFiles->each(function ($item) {
@@ -23,5 +23,7 @@ class LoadModuleRoutes
                 ->middleware('api')
                 ->group($item);
         });
+
+        return null;
     }
 }
