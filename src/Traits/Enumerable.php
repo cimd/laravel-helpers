@@ -13,12 +13,10 @@ trait Enumerable
 
     public static function fromName(string $name): \Illuminate\Support\Collection
     {
-        return collect(self::toArray())->filter(function (mixed $value, string $key) use ($name) {
-            return $value == $name;
-        });
+        return collect(self::toArray())->filter(fn (array $case) => array_key_first($case) === $name)->values();
     }
 
-    public static function fromValue(int $value): self
+    public static function fromValue(int $value): ?self
     {
         return self::tryFrom($value);
     }

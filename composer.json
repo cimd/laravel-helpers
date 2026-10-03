@@ -28,18 +28,57 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.0",
-        "driftingly/rector-laravel": "^2.0",
+        "driftingly/rector-laravel": "^2.6",
         "fakerphp/faker": "^1.23",
-        "laravel/pint": "^1.13",
-        "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^8.9",
-        "larastan/larastan": "^3.0",
-        "orchestra/testbench": "^10.0",
-        "pestphp/pest": "^4.0",
-        "pestphp/pest-plugin-laravel": "^4.0",
-        "rector/rector": "^2.0",
+        "laravel/pint": "^1.32",
+        "mockery/mockery": "^1.6.15",
+        "nunomaduro/collision": "^8.9.5",
+        "larastan/larastan": "^3.12",
+        "orchestra/testbench": "^11.0",
+        "pestphp/pest": "^5.0",
+        "pestphp/pest-plugin-laravel": "^5.0",
+        "rector/rector": "^2.6",
         "spatie/laravel-ignition": "^2.3"
     },
+    "scripts": {
+    "larastan": [
+      "./vendor/bin/phpstan analyse --memory-limit 1024M"
+    ],
+    "larastan:baseline": [
+      "./vendor/bin/phpstan analyse --generate-baseline --memory-limit 1024M"
+    ],
+    "pint": [
+      "./vendor/bin/pint"
+    ],
+    "ide-helper": [
+      "@php artisan ide-helper:generate",
+      "@php artisan ide-helper:meta"
+    ],
+    "rector-dry-run": [
+      "vendor/bin/rector --dry-run"
+    ],
+    "rector": [
+      "vendor/bin/rector"
+    ],
+    "post-autoload-dump": [
+      "@clear",
+      "@prepare"
+    ],
+    "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+    "prepare": "@php vendor/bin/testbench package:discover --ansi",
+    "build": "@php vendor/bin/testbench workbench:build --ansi",
+    "serve": [
+      "@build",
+      "@php vendor/bin/testbench serve"
+    ],
+    "lint": [
+      "@php vendor/bin/pint",
+      "@php vendor/bin/phpstan analyse"
+    ],
+    "test": [
+      "@php vendor/bin/pest"
+    ]
+  },
     "extra": {
         "laravel": {
             "providers": [

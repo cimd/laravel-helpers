@@ -4,7 +4,7 @@ namespace Konnec\Helpers\Traits;
 
 trait Actionable
 {
-    public static function make()
+    public static function make(): static
     {
         return app(static::class);
     }

@@ -12,22 +12,23 @@ class LoadModuleCommands
 {
     use Actionable;
 
+    /**
+     * @return array<int, string>
+     */
     public function run(): array
     {
         //      Normalize search path between windows and linux platforms
-        (PHP_OS === 'WINNT') ? $searchPath = 'modules\*\Commands\*.php' : $searchPath = 'modules/*/Commands/*.php';
+        $searchPath = (PHP_OS === 'WINNT') ? 'modules\*\Commands\*.php' : 'modules/*/Commands/*.php';
 
-        $modulesCommands = collect(
-            glob(base_path($searchPath))
+        return collect(
+            glob(base_path($searchPath)) ?: []
         )->map(function ($item) {
-            (PHP_OS === 'WINNT') ? $withoutPrefix = Str::after($item, base_path() . '\\modules\\') : $withoutPrefix = Str::after($item, base_path() . '/modules/');
+            $withoutPrefix = (PHP_OS === 'WINNT') ? Str::after($item, base_path() . '\\modules\\') : Str::after($item, base_path() . '/modules/');
             $withoutSuffix = Str::beforeLast($withoutPrefix, '.php');
 
             $partial = 'Modules' . DIRECTORY_SEPARATOR . $withoutSuffix;
 
             return str_replace('/', '\\', $partial);
         })->toArray();
-
-        return $modulesCommands;
     }
 }

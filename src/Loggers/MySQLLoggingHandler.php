@@ -5,21 +5,11 @@ namespace Konnec\Helpers\Loggers;
 use Illuminate\Support\Facades\DB;
 use Konnec\Helpers\Actions\TableName;
 use Monolog\Handler\AbstractProcessingHandler;
-use Monolog\Level;
 use Monolog\LogRecord;
 use Throwable;
 
 class MySQLLoggingHandler extends AbstractProcessingHandler
 {
-    /**
-     * Reference:
-     * https://github.com/markhilton/monolog-mysql/blob/master/src/Logger/Monolog/Handler/MysqlHandler.php
-     */
-    public function __construct($level = Level::Debug, $bubble = true)
-    {
-        parent::__construct($level, $bubble);
-    }
-
     /**
      * A failure here must never propagate: this handler is typically reached while reporting
      * some other exception, and if writing the log entry itself throws (e.g. the connection is
@@ -29,6 +19,8 @@ class MySQLLoggingHandler extends AbstractProcessingHandler
      * growth with no circuit breaker: a single ordinary query failure escalates into gigabytes
      * of string concatenation and an OOM within seconds. Swallowing failures here is what keeps
      * "the log write itself failed" from ever becoming a second, worse incident.
+     *
+     * @param  array<string, mixed>|LogRecord  $record
      */
     protected function write(array|LogRecord $record): void
     {

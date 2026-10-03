@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Konnec\Helpers\Providers;
 
 use Illuminate\Support\ServiceProvider as Provider;
