@@ -11,16 +11,25 @@ trait Enumerable
         return collect(self::cases())->map(fn (self $case) => [$case->name => $case->value])->toArray();
     }
 
-    public static function fromName(string $name): \Illuminate\Support\Collection
+    public static function fromName(string $name): ?self
     {
-        return collect(self::toArray())->filter(fn (array $case) => array_key_first($case) === $name)->values();
+        foreach (self::cases() as $case) {
+            if (strtoupper((string) $case->name) === strtoupper($name)) {
+                return $case;
+            }
+        }
+
+        return null;
     }
 
-    public static function fromValue(int $value): ?self
+    public static function fromValue(mixed $value): ?self
     {
         return self::tryFrom($value);
     }
 
+    /**
+     * Returns the label of the case in a human-readable format.
+     */
     public function label(): string
     {
         return ucwords(
@@ -28,5 +37,13 @@ trait Enumerable
                 str_replace('_', ' ', $this->name)
             )
         );
+    }
+
+    /**
+     * Returns the label of the case in a human-readable format, in lowercase.
+     */
+    public function label_lowerc(): string
+    {
+        return strtolower(str_replace('_', ' ', $this->name));
     }
 }
